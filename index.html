@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teknik Servis - Kombi, Klima, Beyaz Eşya</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">🔧 Teknik Servis</div>
+            <ul class="nav-links">
+                <li><a href="#hizmetler">Hizmetlerimiz</a></li>
+                <li><a href="#iletisim">İletişim</a></li>
+                <li><a href="#talep">Talep Oluştur</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Teknik Servis Hizmetleri</h1>
+            <p>Kombi, Klima ve Beyaz Eşya Servisi</p>
+            <a href="#talep" class="btn btn-primary">Servis Talep Et</a>
+        </div>
+    </section>
+
+    <!-- Hizmetlerimiz -->
+    <section id="hizmetler" class="hizmetler">
+        <div class="container">
+            <h2>Hizmetlerimiz</h2>
+            <div class="hizmet-grid">
+                <div class="hizmet-card">
+                    <div class="hizmet-icon">🔥</div>
+                    <h3>Kombi Servisi</h3>
+                    <p>Kombi arıza, bakım ve onarım hizmetleri</p>
+                </div>
+                <div class="hizmet-card">
+                    <div class="hizmet-icon">❄️</div>
+                    <h3>Klima Servisi</h3>
+                    <p>Klima kurulum, temizlik ve onarım</p>
+                </div>
+                <div class="hizmet-card">
+                    <div class="hizmet-icon">🌊</div>
+                    <h3>Beyaz Eşya</h3>
+                    <p>Çamaşır ve bulaşık makinesi servisi</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servis Talep Formu -->
+    <section id="talep" class="talep-section">
+        <div class="container">
+            <h2>Servis Talep Oluştur</h2>
+            <form id="talepForm" class="talep-form">
+                <div class="form-group">
+                    <label for="ad">Ad Soyad</label>
+                    <input type="text" id="ad" name="ad" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefon">Telefon Numarası</label>
+                    <input type="tel" id="telefon" name="telefon" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="hizmet">Hizmet Türü</label>
+                    <select id="hizmet" name="hizmet" required>
+                        <option value="">Seç...</option>
+                        <option value="kombi">Kombi Servisi</option>
+                        <option value="klima">Klima Servisi</option>
+                        <option value="beyaz-esya">Beyaz Eşya Servisi</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="aciklama">Sorun Açıklaması</label>
+                    <textarea id="aciklama" name="aciklama" rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="tarih">Tercih Edilen Tarih</label>
+                    <input type="date" id="tarih" name="tarih" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Talep Oluştur</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- İletişim -->
+    <section id="iletisim" class="iletisim">
+        <div class="container">
+            <h2>İletişim Bilgileri</h2>
+            <div class="iletisim-grid">
+                <div class="iletisim-card">
+                    <h3>📍 Konumumuz</h3>
+                    <p>İstanbul, Türkiye</p>
+                    <p>Dükkan Adresi: Örnek Sokak No: 123</p>
+                </div>
+                <div class="iletisim-card">
+                    <h3>📞 Telefon</h3>
+                    <a href="tel:+905551234567" class="btn btn-contact">
+                        +90 555 123 45 67 Ara
+                    </a>
+                </div>
+                <div class="iletisim-card">
+                    <h3>💬 WhatsApp</h3>
+                    <a href="https://wa.me/905551234567" target="_blank" class="btn btn-whatsapp">
+                        WhatsApp Yazın
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Talepler Listesi -->
+    <section class="talepler-listesi">
+        <div class="container">
+            <h2>Son Talepler</h2>
+            <div id="talepler" class="talepler-grid"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Teknik Servis. Tüm Hakları Saklıdır.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
