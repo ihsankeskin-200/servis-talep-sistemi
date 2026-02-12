@@ -1,122 +1,268 @@
-// Telefon numarası ve WhatsApp numaranızı buraya yazın
-const TELEFON = "905454071440"; // Aranan numarası (+90 kodu olmadan)
-const WHATSAPP = "905551234567"; // WhatsApp numarası (+90 kodu olmadan)
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-// Sayfa yüklendiğinde talepler listesini göster
-document.addEventListener('DOMContentLoaded', function() {
-    displayTalepler();
-    updateContactLinks();
-});
+:root {
+    --primary-color: #ff6b35;
+    --secondary-color: #667eea;
+    --dark-color: #333;
+    --light-color: #f8f9fa;
+    --text-color: #333;
+    --border-color: #ddd;
+}
 
-// Form gönderme işlemi
-document.getElementById('talepForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #fff;
+    overflow-x: hidden;
+}
 
-    // Form verilerini al
-    const talep = {
-        id: Date.now(),
-        ad: document.getElementById('ad').value,
-        telefon: document.getElementById('telefon').value,
-        email: document.getElementById('email').value,
-        hizmet: document.getElementById('hizmet').value,
-        aciklama: document.getElementById('aciklama').value,
-        tarih: document.getElementById('tarih').value,
-        olusturulma: new Date().toLocaleDateString('tr-TR')
-    };
+html {
+    scroll-behavior: smooth;
+}
 
-    // localStorage'a kaydet
-    let talepler = JSON.parse(localStorage.getItem('talepler')) || [];
-    talepler.push(talep);
-    localStorage.setItem('talepler', JSON.stringify(talepler));
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
-    // Formu temizle
-    this.reset();
+/* Header Styles */
+.header__area {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 100;
+}
 
-    // Başarı mesajı göster
-    showMessage('Servis talebiniz başarıyla oluşturuldu! En kısa sürede sizinle iletişime geçeceğiz.', 'success');
+.header__top {
+    background-color: var(--dark-color);
+    color: white;
+    padding: 10px 0;
+    border-bottom: 2px solid var(--primary-color);
+}
 
-    // Talepler listesini güncelle
-    displayTalepler();
+.header__top ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+}
 
-    // Sayfayı talepler kısmına kaydır
-    setTimeout(() => {
-        document.getElementById('talepler').scrollIntoView({ behavior: 'smooth' });
-    }, 500);
-});
+.header__top li {
+    padding: 0 20px;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
 
-// Talepler listesini görüntüle
-function displayTalepler() {
-    const talepleriDiv = document.getElementById('talepler');
-    let talepler = JSON.parse(localStorage.getItem('talepler')) || [];
+.header__top li:last-child {
+    border-right: none;
+}
 
-    // Talepler ters sırada göster (en yeni en üstte)
-    talepler = talepler.reverse();
+.header__top i {
+    margin-right: 8px;
+    color: var(--primary-color);
+}
 
-    if (talepler.length === 0) {
-        talepleriDiv.innerHTML = '<p style="text-align: center; color: #999;">Henüz talep bulunmamaktadır.</p>';
-        return;
+.header__bottom {
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 99;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Navigation Menu */
+.main__menu ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.main__menu a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 12px;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.main__menu a:hover,
+.main__menu a.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu__bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--dark-color);
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #e55a2b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 107, 53, 0.3);
+}
+
+.btn-danger {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #e55a2b;
+}
+
+.btn-success {
+    background-color: #25d366;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #20ba5a;
+}
+
+/* Slider Section */
+.slider__area {
+    min-height: 600px;
+}
+
+.slider__height {
+    min-height: 600px;
+    position: relative;
+}
+
+.slider__content {
+    animation: slideInUp 0.8s ease;
+}
+
+.slider__content span {
+    animation: fadeInDown 0.6s ease;
+}
+
+.slider__content h2 {
+    animation: fadeInUp 0.8s ease;
+}
+
+.slider__content p {
+    animation: fadeInUp 1s ease;
+}
+
+.slider__btn {
+    animation: fadeInUp 1.2s ease;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
     }
-
-    let html = '';
-    talepler.forEach(talep => {
-        const hizmetAdi = getHizmetAdi(talep.hizmet);
-        html += `
-            <div class="talep-card">
-                <h4>👤 ${talep.ad}</h4>
-                <p><strong>Hizmet:</strong> ${hizmetAdi}</p>
-                <p><strong>Telefon:</strong> <a href="tel:${talep.telefon}" style="color: var(--primary-color); text-decoration: none;">${talep.telefon}</a></p>
-                <p><strong>E-mail:</strong> ${talep.email}</p>
-                <p><strong>Sorun:</strong> ${talep.aciklama}</p>
-                <p><strong>Tercih Edilen Tarih:</strong> ${talep.tarih}</p>
-                <p><strong>Talep Tarihi:</strong> ${talep.olusturulma}</p>
-                <span class="badge">${hizmetAdi}</span>
-            </div>
-        `;
-    });
-
-    talepleriDiv.innerHTML = html;
-}
-
-// Hizmet adını döndür
-function getHizmetAdi(kod) {
-    const hizmetler = {
-        'kombi': '🔥 Kombi Servisi',
-        'klima': '❄️ Klima Servisi',
-        'beyaz-esya': '🌊 Beyaz Eşya Servisi'
-    };
-    return hizmetler[kod] || kod;
-}
-
-// İletişim linklerini güncelle
-function updateContactLinks() {
-    // Telefon linki
-    const telefonLinks = document.querySelectorAll('a[href^="tel:"]');
-    telefonLinks.forEach(link => {
-        if (link.textContent.includes('Ara')) {
-            link.href = `tel:+${TELEFON}`;
-        }
-    });
-
-    // WhatsApp linki
-    const whatsappLink = document.querySelector('a[href^="https://wa.me/"]');
-    if (whatsappLink) {
-        whatsappLink.href = `https://wa.me/${WHATSAPP}`;
+    to {
+        transform: translateY(0);
+        opacity: 1;
     }
 }
 
-// Başarı/Hata mesajı göster
-function showMessage(message, type) {
-    const messageDiv = document.createElement('div');
-    messageDiv.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 1rem 2rem;
-        border-radius: 5px;
-        color: white;
-        font-weight: 600;
-        z-index: 10000;
-        animation: slideIn 0.3s ease-in-out;
-        background-color: ${type === 'success' ? '#28a745' : '#dc3545'};
-    `;
-    messageDiv.text`
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Services Section */
+.services__section {
+    position: relative;
+}
+
+.service__card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.service__card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.service__card h3 {
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+.service__card:hover h3 {
+    color: var(--secondary-color);
+}
+
+/* About Section */
+.about__section {
+    position: relative;
+}
+
+.about__section h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+/**
