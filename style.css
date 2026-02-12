@@ -5,10 +5,9 @@
 }
 
 :root {
-    --primary-color: #007bff;
-    --secondary-color: #28a745;
-    --danger-color: #dc3545;
-    --dark-color: #343a40;
+    --primary-color: #ff6b35;
+    --secondary-color: #667eea;
+    --dark-color: #333;
     --light-color: #f8f9fa;
     --text-color: #333;
     --border-color: #ddd;
@@ -19,6 +18,11 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: #fff;
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 .container {
@@ -27,71 +31,107 @@ body {
     padding: 0 20px;
 }
 
-/* Navbar */
-.navbar {
-    background-color: var(--dark-color);
-    color: white;
-    padding: 1rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* Header Styles */
+.header__area {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 100;
 }
 
-.navbar .container {
+.header__top {
+    background-color: var(--dark-color);
+    color: white;
+    padding: 10px 0;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.header__top ul {
+    list-style: none;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: flex-start;
+}
+
+.header__top li {
+    padding: 0 20px;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.header__top li:last-child {
+    border-right: none;
+}
+
+.header__top i {
+    margin-right: 8px;
+    color: var(--primary-color);
+}
+
+.header__bottom {
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 99;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo h2 {
+    margin: 0;
     font-size: 1.5rem;
     font-weight: bold;
 }
 
-.nav-links {
-    display: flex;
+/* Navigation Menu */
+.main__menu ul {
     list-style: none;
+    display: flex;
     gap: 2rem;
 }
 
-.nav-links a {
-    color: white;
+.main__menu a {
+    color: var(--text-color);
     text-decoration: none;
-    transition: color 0.3s;
+    font-weight: 600;
+    padding: 8px 12px;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
 }
 
-.nav-links a:hover {
+.main__menu a:hover,
+.main__menu a.active {
     color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
 }
 
-/* Hero Section */
-.hero {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: white;
-    padding: 6rem 2rem;
-    text-align: center;
+/* Hamburger Menu */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
 }
 
-.hero-content h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-.hero-content p {
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
+.menu__bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--dark-color);
+    margin: 5px 0;
+    transition: 0.3s;
 }
 
 /* Buttons */
 .btn {
     display: inline-block;
-    padding: 0.8rem 1.5rem;
+    padding: 12px 30px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
     font-size: 1rem;
     font-weight: 600;
 }
@@ -102,248 +142,127 @@ body {
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
+    background-color: #e55a2b;
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 15px rgba(255, 107, 53, 0.3);
 }
 
-.btn-contact {
-    background-color: var(--dark-color);
+.btn-danger {
+    background-color: var(--primary-color);
     color: white;
-    display: block;
-    margin-top: 1rem;
 }
 
-.btn-contact:hover {
-    background-color: #222;
+.btn-danger:hover {
+    background-color: #e55a2b;
 }
 
-.btn-whatsapp {
+.btn-success {
     background-color: #25d366;
     color: white;
-    display: block;
-    margin-top: 1rem;
 }
 
-.btn-whatsapp:hover {
+.btn-success:hover {
     background-color: #20ba5a;
 }
 
-/* Hizmetler Section */
-.hizmetler {
-    padding: 4rem 2rem;
-    background-color: var(--light-color);
+/* Slider Section */
+.slider__area {
+    min-height: 600px;
 }
 
-.hizmetler h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 3rem;
-    color: var(--dark-color);
+.slider__height {
+    min-height: 600px;
+    position: relative;
 }
 
-.hizmet-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+.slider__content {
+    animation: slideInUp 0.8s ease;
 }
 
-.hizmet-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
+.slider__content span {
+    animation: fadeInDown 0.6s ease;
 }
 
-.hizmet-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+.slider__content h2 {
+    animation: fadeInUp 0.8s ease;
 }
 
-.hizmet-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+.slider__content p {
+    animation: fadeInUp 1s ease;
 }
 
-.hizmet-card h3 {
+.slider__btn {
+    animation: fadeInUp 1.2s ease;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Services Section */
+.services__section {
+    position: relative;
+}
+
+.service__card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.service__card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.service__card h3 {
     color: var(--primary-color);
-    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
 }
 
-.hizmet-card p {
-    color: #666;
+.service__card:hover h3 {
+    color: var(--secondary-color);
 }
 
-/* Talep Section */
-.talep-section {
-    padding: 4rem 2rem;
+/* About Section */
+.about__section {
+    position: relative;
 }
 
-.talep-section h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: var(--dark-color);
+.about__section h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
 }
 
-.talep-form {
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: var(--light-color);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    color: var(--dark-color);
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    font-size: 1rem;
-    font-family: inherit;
-    transition: border-color 0.3s;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
-}
-
-.talep-form button {
-    width: 100%;
-}
-
-/* İletişim Section */
-.iletisim {
-    padding: 4rem 2rem;
-    background-color: var(--light-color);
-}
-
-.iletisim h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 3rem;
-    color: var(--dark-color);
-}
-
-.iletisim-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-}
-
-.iletisim-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.iletisim-card h3 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-}
-
-.iletisim-card p {
-    color: #666;
-    margin-bottom: 0.5rem;
-}
-
-/* Talepler Listesi */
-.talepler-listesi {
-    padding: 4rem 2rem;
-}
-
-.talepler-listesi h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: var(--dark-color);
-}
-
-.talepler-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.talep-card {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    border-left: 4px solid var(--primary-color);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.talep-card h4 {
-    color: var(--dark-color);
-    margin-bottom: 0.5rem;
-}
-
-.talep-card p {
-    color: #666;
-    font-size: 0.9rem;
-    margin: 0.3rem 0;
-}
-
-.talep-card .badge {
-    display: inline-block;
-    background-color: var(--primary-color);
-    color: white;
-    padding: 0.3rem 0.6rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    margin-top: 0.5rem;
-}
-
-/* Footer */
-.footer {
-    background-color: var(--dark-color);
-    color: white;
-    text-align: center;
-    padding: 2rem;
-    margin-top: 4rem;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .nav-links {
-        gap: 1rem;
-        font-size: 0.9rem;
-    }
-
-    .hero-content h1 {
-        font-size: 1.8rem;
-    }
-
-    .hizmetler h2,
-    .talep-section h2,
-    .iletisim h2,
-    .talepler-listesi h2 {
-        font-size: 1.5rem;
-    }
-
-    .talep-form {
-        padding: 1.5rem;
-    }
-}
+/**
